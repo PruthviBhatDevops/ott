@@ -2,14 +2,17 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { validateSignIn } from "./../utils/ValidateSignIn"
 import { auth } from '../utils/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { login } from "../store/slices/userSlice"
 import { useDispatch } from "react-redux"
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const toggleSignIn = () => {
         setIsSignIn(!isSignIn)
@@ -19,7 +22,6 @@ const Login = () => {
 
     const handle = () => {
         try {
-
             const message = validateSignIn(email.current.value, password.current.value);
             if (message) {
                 setErrorMessage(message);
@@ -27,12 +29,14 @@ const Login = () => {
                 signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        console.log("Signed in user: ", user)
+                        console.log(user)
+                        dispatch(login({ email: user?.email, accessToken: user?.accessToken, uid: user?.uid, photoURL: user?.photoURL }));
+                        navigate("/browse")
                     })
                     .catch((error) => {
                         setErrorMessage(`${error.code} - ${error.message}`);
                     });
-               
+
             } else {
                 createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
                     .then((userCredential) => {
@@ -48,9 +52,6 @@ const Login = () => {
             const errorMessage = error.message;
             setErrorMessage(`${errorCode} - ${errorMessage}`);
         }
-
-
-        
     }
     return (
         <div>

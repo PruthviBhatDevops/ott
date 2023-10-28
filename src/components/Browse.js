@@ -1,9 +1,12 @@
-import React from 'react'
+import useNowPlayingMovies from "./../hooks/useNowPlayingMovies"
+import BrowseMoviesContainer from "./BrowseMoviesContainer";
+import BrowseVideoContainer from "./BrowseVideoContainer";
 
 const Browse = () => {
+  useNowPlayingMovies();
   return (
     <div>
-      <h2 className='text-5xl'>Browse Hello</h2>
+      <BrowseVideoContainer />
     </div>
   )
 }
