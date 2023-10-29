@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import Login from './components/Login'
 import Browse from './components/Browse'
-import user from './store/appStore'
+import store from './store/appStore'
 import { Provider } from "react-redux"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
@@ -22,7 +22,7 @@ function App() {
   ])
 
   return (
-    <Provider store={user} >
+    <Provider store={store} >
       <RouterProvider router={router} />
     </Provider>
   );

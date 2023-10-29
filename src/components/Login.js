@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { login } from "../store/slices/userSlice"
 import { useDispatch } from "react-redux"
 import { useNavigate } from 'react-router-dom';
+import { BG_URI } from '../utils/constants';
 
 
 const Login = () => {
@@ -57,7 +58,7 @@ const Login = () => {
         <div>
             <Header />
             <div className='absolute'>
-                <img src='https://assets.nflxext.com/ffe/siteui/vlv3/ab180a27-b661-44d7-a6d9-940cb32f2f4a/7fb62e44-31fd-4e1f-b6ad-0b5c8c2a20ef/IN-en-20231009-popsignuptwoweeks-perspective_alpha_website_large.jpg' alt="background"></img>
+                <img src={BG_URI} alt="background"></img>
             </div>
             <form onSubmit={(e) => { e.preventDefault() }} className='w-3/12 absolute p-12 bg-black  mx-auto my-36 left-0 right-0 text-white bg-opacity-80'>
                 <h1 className='font-bold text-3xl py-2 m-2'>{isSignIn ? "Sign In" : "Sign Up"}</h1>
