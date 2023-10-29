@@ -7,3 +7,5 @@ export const OPTIONS = {
         Authorization: TMDB_API_KEY
     }
 };
+
+export const IMAGE_CDN = "https://image.tmdb.org/t/p/w500/";

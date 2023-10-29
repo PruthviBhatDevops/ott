@@ -8,7 +8,6 @@ const VideoBackground = ({ id }) => {
   const trailers = async () => {
     let data = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, OPTIONS)
     const json = await data.json();
-    console.log("JSON", typeof(json), json)
     const filteredTrailer = json.results.filter((video) => video.type == "Trailer");
     setYoutubeId(filteredTrailer.length ? filteredTrailer[0].key : data[0].key);
   }
@@ -24,9 +23,9 @@ const VideoBackground = ({ id }) => {
       <iframe 
        src={src}
        className='w-screen aspect-video'
-       title="YouTube video player" frameborder="0"
+       title="YouTube video player" frameBorder="0"
        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-       allowfullscreen></iframe>
+       allowFullScreen></iframe>
     </div>
   )
 }
