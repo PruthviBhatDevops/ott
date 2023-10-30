@@ -30,7 +30,6 @@ const Login = () => {
                 signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        console.log(user)
                         dispatch(login({ email: user?.email, accessToken: user?.accessToken, uid: user?.uid, photoURL: user?.photoURL }));
                         navigate("/browse")
                     })
@@ -42,7 +41,8 @@ const Login = () => {
                 createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        console.log("Signed up user: ", user)
+                        dispatch(login({ email: user?.email, accessToken: user?.accessToken, uid: user?.uid, photoURL: user?.photoURL }));
+                        navigate("/browse")
                     })
                     .catch((error) => {
                         setErrorMessage(`${error.code} - ${error.message}`);

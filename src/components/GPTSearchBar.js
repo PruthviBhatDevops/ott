@@ -5,7 +5,6 @@ import lang  from "../utils/LanguageConstants"
 const GPTSearchBar = () => {
 
   const langVal = useSelector(store => store.config?.lang);
-  console.log("Langauage",langVal, lang[langVal].search)
 
   return (
     <div className='pt-[10%] flex justify-center'>
